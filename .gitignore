@@ -1,1 +1,6 @@
 venv/
+*.pdf
+*.txt
+*.json
+.env
+.DS_Store
