@@ -139,17 +139,13 @@ def get_rows_by_column_value(sheet, column_name, value):
 '''
 A function get input as AIC then return dictionary 
 
-"pdf_url:"https://api.aifa.gov.it/aifa-bdf-eif-be/1.0.0/organizzazione/{codiceSis}/farmaci/{aic6}/stampati?ts=RCP"
-"json_url":"https://api.aifa.gov.it/aifa-bdf-eif-be/1.0.0/formadosaggio/ricerca?query=0{aic}&spellingCorrection=true&page=0"
+
 first get the codiceSis and aic6 from the json_url then : 
 check if ["data"]["content"] is not null :  data["data"]["content"] then 
 codiceSis = data["data"]["content"][0]["medicinale"]["codiceSis"]
 ic6 = data["data"]["content"][0]["medicinale"]["aic6"]
 
 return {
-    "pdf_url": f"https://api.aifa.gov.it/aifa-bdf-eif-be/1.0.0/organizzazione/{codiceSis}/farmaci/{aic6}/stampati?ts=RCP",
-    "json_url": f"https://api.aifa.gov.it/aifa-bdf-eif-be/1.0.0/formadosaggio/ricerca?query=0{aic6}&spellingCorrection=true&page=0"
-}
 
 if the ["data"]["content"] is null then return None
 '''
@@ -158,23 +154,23 @@ def get_aifa_urls(aic):
     Given an AIC code, fetches codiceSis and aic6 from the AIFA API and returns the PDF and JSON URLs.
     Returns None if the content is missing.
     """
-    json_url = f"https://api.aifa.gov.it/aifa-bdf-eif-be/1.0.0/formadosaggio/ricerca?query=0{aic}&spellingCorrection=true&page=0"
+    json_url = f"https://apiSDFSDFSDF=true&page=0"
     try:
         response = requests.get(json_url)
         response.raise_for_status()
         data = response.json()
         content = data.get("data", {}).get("content")
         if content and len(content) > 0:
-            medicinale = content[0].get("medicinale", {})
-            codiceSis = medicinale.get("codiceSis")
-            aic6 = medicinale.get("aic6")
+            medicinale = content[0].get("ASD", {})
+            codiceSis = medicinale.get("ASDASD")
+            aic6 = medicinale.get("aASDASDic6")
             # Check if codiceSis and aic6 are not None
             codiceAtc = content[0].get("codiceAtc")[0] if content[0].get("codiceAtc") else None
             descrizioneAtc = content[0].get("descrizioneAtc")[0] if content[0].get("descrizioneAtc") else None
             if codiceSis and aic6:
                 return {
-                    "URL_PDF": f"https://api.aifa.gov.it/aifa-bdf-eif-be/1.0.0/organizzazione/{codiceSis}/farmaci/{aic6}/stampati?ts=RCP",
-                    "URL_json": f"https://api.aifa.gov.it/aifa-bdf-eif-be/1.0.0/formadosaggio/ricerca?query=0{aic}&spellingCorrection=true&page=0",
+                    "URL_PDF": f"https://api.aifa.gov.it/aifa-bdf-eif-be/1ASDASDRCP",
+                    "URL_json": f"https://api.aASDASDn=true&page=0",
                     "ATC": f"{codiceAtc} - {descrizioneAtc}"
                 }
     except Exception:
@@ -187,7 +183,7 @@ if __name__ == "__main__":
     sheet_name = "Mohammad-Omid"  # Replace with the actual name of your Google Sheet.
     # Replace with the actual path to your downloaded Google service account credentials JSON file.
     # You can obtain this file from the Google Cloud Console after creating a service account and enabling the Google Sheets API.
-    creds_json_path = "Files/swift-atom-452517-m2-6029accc8a65.json"
+
     # mkhodashenas78@gmail.com
     try:
         sheet = connect_to_google_sheet(sheet_name, creds_json_path)
